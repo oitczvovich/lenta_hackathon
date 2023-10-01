@@ -2,8 +2,8 @@ from http import HTTPStatus
 
 from fastapi import APIRouter, HTTPException
 
-from user_auth.core.user import auth_backend, fastapi_users
-from user_auth.shemas.user import UserCreate, UserRead, UserUpdate
+from core.user import auth_backend, fastapi_users
+from shemas.user import UserCreate, UserRead, UserUpdate
 
 router = APIRouter()
 
