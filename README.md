@@ -1,21 +1,14 @@
-ML модель установка и запуск на локальной машине.
+Клонируйте репозиторий к себе на компьютер В корневой папке нужно создать виртуальное окружение и установить зависимости.
+
+`python -m venv venv`
+
+запускаем виртуальное окружение 
+
+Linux
+`. venv/bin/activate``
 
 
-для VSC 
+`pip install -r requirements_ml.txt`
 
-в терминале в папке ML  
-устанавливаем виртуальное окружение   
-
-
-```bash
-python -m venv venv
-```
-Запускаем виртуальное окружение  
-для  Lunix  
-```bash
-source venv/bin/activate
-```
-для Windows но точно не помню
-```bash
-venv\Scripts\activate.bat  
-```
+запускаем 
+`python3 main.py`
