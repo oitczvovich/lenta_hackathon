@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import plotly.express as px
 
+
 import matplotlib.pyplot as plt
 from statsmodels.tsa.seasonal import seasonal_decompose
 import seaborn as sns
@@ -48,9 +49,13 @@ def forecast(
 
 # 1. ФУНКЦИИ ПОДГОТОВКИ ФИЧЕЙ:
     # для добавления выходных
-    def add_holidays(df,rus_holidays):
+    def add_holidays(df, rus_holidays):
+        
+        # print('rus_holidays', rus_holidays['date'])
         rus_holidays['date'] = pd.to_datetime(rus_holidays['date'], format='%d.%m.%Y')
-        df = df.merge(rus_holidays[['date', 'holiday']], on='date')
+        print(rus_holidays['date'])
+        # print('df', df['date'])
+        df = 'df'.merge(rus_holidays[['date', 'holiday']], on='date')
         df = df.set_index('date')
         df.holiday = df.holiday.astype(str)
         return df
@@ -196,6 +201,7 @@ def forecast(
         sub_df = pd.merge(sub_df,group_info, how='left', on='pr_sku_id')
     # подготовка индексов перед merge
         sub_df['date'] = pd.to_datetime(sub_df['date'], format='%Y-%m-%d')
+        print(sub_df['date'])
         sub_df = sub_df.set_index('date', drop=True)
         sub_df.sort_index(inplace=True)
     # сохраняем дату начала прогноза
@@ -305,10 +311,10 @@ def forecast(
     # объединяем submission с трейн
     test_data, split, sales_sub = get_sub_df(subm_data, train_data)
     # готовим тестовые выборки
-    ft_1, ft_2_t, ft_2_b, ft_4 = get_test_features(test_data,split)
+    ft_1, ft_2_t, ft_2_b, ft_4 = get_test_features(test_data, split)
     # получаем предсказания
     pr_1, pr_2_t, pr_2_b, pr_4 = get_prediction(ft_1, ft_2_t, ft_2_b, ft_4)
     # объединяем предсказания в submission датафрейм
-    sales_submission_pred = predictions_to_submission(sales_sub,pr_1, pr_2_t, pr_2_b, pr_4, ft_1, ft_2_t, ft_2_b, ft_4)
+    sales_submission_pred = predictions_to_submission(sales_sub, pr_1, pr_2_t, pr_2_b, pr_4, ft_1, ft_2_t, ft_2_b, ft_4)
 
     return sales_submission_pred
