@@ -162,3 +162,5 @@ cython_debug/
 test_data/
 out_data/
 predict.csv
+
+dict_train.csv
