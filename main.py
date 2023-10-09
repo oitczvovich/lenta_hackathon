@@ -8,7 +8,7 @@ import csv
 import time
 from dotenv import load_dotenv
 
-from ml_model.model import forecast
+from model import forecast
 from core.settings import settings
 from core.logger import setup_logging, _logger
 # from core.func_API import (
@@ -297,25 +297,24 @@ def _create_predata_csv(forecast_dates):
 
 def _create_df_from_csv():
     DF_subm_data = create_subm_DF()
-    # DF_subm_data.info()
+    DF_subm_data.info()
     DF_train_data = create_train_DF()
-    # DF_train_data.info()
+    DF_train_data.info()
 
-    return DF_subm_data, DF_subm_data
+    return DF_subm_data, DF_train_data
 
 def main(today=date.today()):
     # forecast_dates = [NOW_DATE + timedelta(days=d) for d in range(1, PREDICTION_DAYS + 1)]
     # forecast_dates = [el.strftime('%Y-%m-%d') for el in forecast_dates]
     # _create_predata_csv(forecast_dates=forecast_dates)
 
+
     DF_subm_data, DF_train_data = _create_df_from_csv()
 
-    print("Запуск формирования предсказания.")
+    # print("Запуск формирования предсказания.")
     holidays = create_holidays()
     forecast(subm_data=DF_subm_data, train_data=DF_train_data, holidays=holidays)
-                
-                
-                
+
             #     prediction = forecast(sales, item_info, store)
                 
             #     result.append({"store": store["store"],

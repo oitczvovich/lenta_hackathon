@@ -19,8 +19,3 @@ source venv/bin/activate
 ```bash
 venv\Scripts\activate.bat  
 ```
-
-запуск приложения 
-```
-python main.py
-```
